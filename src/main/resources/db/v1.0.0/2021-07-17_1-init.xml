@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="userInitial" author="r.kaminin" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user"></tableExists>
+            </not>
+        </preConditions>
+        <sqlFile dbms="postgresql" path="user_initial.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="roleInitial" author="r.kaminin" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="role"></tableExists>
+            </not>
+        </preConditions>
+        <sqlFile dbms="postgresql" path="role_initial.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+</databaseChangeLog>
