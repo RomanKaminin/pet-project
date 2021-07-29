@@ -27,31 +27,31 @@ public class UserController {
     }
 
     @Operation(summary = "Получить пользователя")
-    @GetMapping("/find/{id}")
+    @GetMapping
     public ResponseEntity<User> getUserById(
-            @ApiParam(value = "Идентификатор пользователя", required = true) @PathVariable Long id) {
+            @ApiParam(value = "Идентификатор пользователя", required = true) @RequestParam Long id) {
         User user = userService.findUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @Operation(summary = "Создать пользователя")
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User user) {
         User newUser = userService.addUser(user);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
     @Operation(summary = "Редактировать пользователя")
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         User newUser = userService.updateUser(user);
         return new ResponseEntity<>(newUser, HttpStatus.OK);
     }
 
     @Operation(summary = "Удалить пользователя")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping
     public ResponseEntity<?> deleteUser(
-            @ApiParam(value = "Идентификатор пользователя", required = true) @PathVariable Long id) {
+            @ApiParam(value = "Идентификатор пользователя", required = true) @RequestParam Long id) {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
